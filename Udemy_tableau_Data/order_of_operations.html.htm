@@ -1,0 +1,158 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="section" content="Support"><meta name="subsection" content="Product Help"><meta name="breadcrumb_l1_text" content="Support"><meta name="breadcrumb_l1_url" content="http://www.tableau.com/en-us/support"><meta name="breadcrumb_l2_text" content="Product Help"><meta name="breadcrumb_l2_url" content="http://www.tableau.com/en-us/support/help"><meta name="product_applies_to" content="" /><title>Tableau's Order of Operations - Tableau</title><script type="text/javascript">(function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? String.fromCharCode(38) + 'l=' + l : '';
+        j.async = true;
+        j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-BVCN');</script><script type="text/javascript">var _elqQ = _elqQ || [];
+      _elqQ.push(['elqSetSiteId', '840']);
+      _elqQ.push(['elqTrackPageView']);
+      (function() {
+        function async_load() {
+          var s = document.createElement('script');
+          s.type = 'text/javascript';
+          s.async = true;
+          s.src = '//img.en25.com/i/elqCfg.min.js';
+          var x = document.getElementsByTagName('script')[0];
+          x.parentNode.insertBefore(s, x);
+        }
+        if (window.addEventListener) window.addEventListener('DOMContentLoaded', async_load, false);
+        else if (window.attachEvent) window.attachEvent('onload', async_load);
+      })();</script><link href="./Resources/app.css?2869d18f52bcc0ba3d47" rel="stylesheet"></head><body><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-BVCN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><div id="app" class="wrapper"><header class="container--full-width"><div class="container--centered"><div class="header__mobile-menu"><menu-tree-toggle></menu-tree-toggle></div><div class="header__logo"><a href="https://www.tableau.com/en-us/"><img src="./Resources/tableau-logo.png" class="header__logo__img" alt="Tableau"></a></div><div class="header__search"><search-header-help placeholder="Search all help"></search-header-help></div></div></header><div class="container--full-width subheader print-hidden"><div class="container--centered"><h4 class="heading--subheader">Tableau Desktop and Web Authoring Help</h4></div></div><div class="container--full-width"><div class="container--centered"><div class="nav--breadcrumbs"><breadcrumb-links-help :disabled="false"></breadcrumb-links-help></div></div></div><div class="section--main container--full-width"><div class="container--centered"><nav class="nav-side nav-side--left" role="navigation"><menu-tree-help menu-title="Contents"></menu-tree-help></nav><article role="main"><div id="form-container">
+                <form id="first-form" style="width:90%; float:left;"><span class="form-helpful-text form-visible">Was this page helpful?</span>
+                    <div class="form-helpful-radio form-visible">
+                        <input id="helpful-yes" name="form-helpful-radio" onclick="submitRating();" type="radio" value="1">Yes
+                        <input id="helpful-no" name="form-helpful-radio" onclick="submitRating();" type="radio" value="2">No
+                    </div>
+                </form><span class="feedback-hidden" id="frame-caption">Have a comment? Please leave it here.</span><span class="feedback-hidden" id="post-submit-msg"><b>Thanks for your feedback!</b></span>
+            </div><nav class="nav-center"><menu-heading-links-static-help menu-title="In this article" :disabled="false" :headings="pageHeadings"></menu-heading-links-static-help></nav><h1>Tableau's Order of Operations</h1><div class="caption article__tags"><span class="article__tags--version">Version: 2019.1</span> <span class="article__tags--applies-to"> </span></div><div id="content-body">
+            <p>The  order of operations in Tableau, sometimes called the query pipeline, is the order in which Tableau performs various actions. Actions are also known as operations. Many operations apply filters, which means that as you build a view and add filters, those filters always execute in the order established by the order of operations.</p>
+            <p class="note"><b>Watch a Video</b>: To see related concepts demonstrated in Tableau, watch <a href="https://youtu.be/fyDY0_Ivy54" target="_blank">Understanding Tableau's Order of Operations</a>, a 1-hour, free video presentation.</p>
+            <p>This article includes two scenarios for updating a view to correct problems resulting from the order of operations: converting a dimension filter to a context filter, and converting a table calculation to a FIXED level of detail expression.</p>
+            <h2 :level="2" id="about-the-order-of-operations-aka-query-pipeline" is="heading-item"><a name="OofOps"></a>About the order of operations (aka query pipeline)</h2>
+            <p>Sometimes, you might expect Tableau to execute filters in one order, but the order of operations dictates that they be executed in a different order, which gives you unexpected results. When this happens, you can sometimes change the order in which operations are executed in the pipeline.</p>
+            <p>The Tableau order of operations includes all the elements in the following illustration.  Filters are shown in blue; other operations, which are mostly calculations, are shown in black. </p>
+            <p>
+                <img alt="" src="Img/OrderofOperations.png">
+            </p>
+            <p class="note"><b>Note</b>: In the order of operations, the <a href="filtering.htm#LatestDatePresets">latest date filter</a>  is global to the workbook, while context filters apply per worksheet. The latest date is determined just after the workbook opens for first use, after data source filters, but before context filters. At that point the date is set, and the latest date preset is used as a dimension filter.</p>
+            <h2 :level="2" id="example-1-convert-a-dimension-filter-to-a-context-filter" is="heading-item"><a name="DimtoCtxt"></a>Example 1: Convert a Dimension Filter to a Context Filter</h2>
+            <p>This and the following example use the <span class="uicontrol">Sample – Superstore</span> data source provided with Tableau Desktop.</p>
+            <p>In this example, the view addresses the following question: Who are the top 10 customers, by total sales, in New York City?</p>
+            <p>The view contains two dimension filters, one that you create on the <span class="uicontrol">General</span> tab in the Filters dialog box, and the other on the <span class="uicontrol">Top N</span> tab. The problem is that these filters are executing simultaneously, whereas you would like to general filter to be applied before the top n filter, so that the top n filter can act on the results as previously filtered by the general filter. The solution is to redefine one of the filters as a context filter so that a clear order of precedence is established.</p>
+            <p>Here are the steps for building this view.</p>
+            <ol>
+                <li value="1">
+                    <p>Drag <span class="uicontrol">Sales</span> to <span class="uicontrol">Columns</span>.</p>
+                </li>
+                <li value="2">
+                    <p>Drag <span class="uicontrol">City</span> and <span class="uicontrol">[Customer Name]</span> to <span class="uicontrol">Rows</span>.</p>
+                </li>
+                <li value="3">
+                    <p>Drag <span class="uicontrol">City</span> from the <span class="uicontrol">Data</span> pane again, this time to <span class="uicontrol">Filters</span>. On the <span class="uicontrol">General</span> tab in the Filter dialog box, set the filter to show just a single value: New York City. Do this by clicking <span class="uicontrol">None</span> and then choosing <span class="uicontrol">New York City</span>.</p>
+                    <p>This creates a general dimension filter.</p>
+                </li>
+                <li value="4">
+                    <p>Click the <span class="uicontrol">Sort Descending</span> button (<img alt="" src="Img/sort_descend.png">) on the toolbar. Your view now looks like this:</p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations1.png">
+                    </p>
+                    <p>Note the first few names in the list: Ashbrook, Fuller, Vernon, etc.</p>
+                </li>
+                <li value="5">
+                    <p>Now drag <span class="uicontrol">[Customer Name]</span> from the <span class="uicontrol">Data</span>  pane to <span class="uicontrol">Filters</span>, and create a Top 10 Filter, to show only the top 10 customers by total sales:</p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations2.png">
+                    </p>
+                    <p>After you apply this second filter, the view looks right, but notice that the names shown are no longer the same as before:</p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations3.png">
+                    </p>
+                    <p>What happened to Peter Fuller, formerly in second place? The goal was to show the top 10 customers in New York City, but now the view is actually showing the top 10 customers overall.</p>
+                    <p>The problem is that top and general dimension filters are applied simultaneously—they are both dimension filters, and they appear in the same place in the Tableau order of operations: </p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations4.png">
+                    </p>
+                    <p>The solution  is to add  the general dimension filter (on <span class="uicontrol">City</span>) to context—that is, by turning it into a context filter, which is executed before any other filter that you create in a worksheet. </p>
+                    <p>For details, see <a class="MCXref xref" href="filtering_context.htm" xrefformat="{paratext}">Improve View Performance with Context Filters</a>.</p>
+                </li>
+                <li value="6">
+                    <p>Right-click <span class="uicontrol">City</span> on the <span class="uicontrol">Filters</span> shelf (Control-click on a Mac) and choose <span class="uicontrol">Add to Context</span>. As a context filter, this filter now takes precedence over the dimension filter, and so the view now shows what it’s supposed to:</p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations5.png">
+                    </p>
+                </li>
+            </ol>
+            <h2 :level="2" id="example-2-convert-a-table-calculation-to-a-fixed-level-of-detail-expression" is="heading-item"><a name="TableCalctoFXD"></a>Example 2: Convert a Table Calculation to a FIXED Level of Detail Expression</h2>
+            <p>In this example, the view addresses the following question: What is the percent of total sales by product sub-category?</p>
+            <p>The view contains a dimension filter and a table calculation. Tableau applies the dimension filter before executing the table calculation. To invert the order of these operations, use a FIXED level of detail expression instead of a table calculation.</p>
+            <p>Here are the steps for building this view.</p>
+            <ol>
+                <li value="1">
+                    <p>In a new worksheet, drag <span class="uicontrol">Sales</span> to <span class="uicontrol">Columns</span>.</p>
+                </li>
+                <li value="2">
+                    <p>Drag <span class="uicontrol">Sub-Category</span> to <span class="uicontrol">Rows</span>.</p>
+                </li>
+                <li value="3">
+                    <p>Right-click <span class="uicontrol">SUM(Sales)</span> on <span class="uicontrol">Columns</span> and select a quick table calculation – <span class="uicontrol">Percent of Total</span>.</p>
+                </li>
+                <li value="4">
+                    <p>Click the <span class="uicontrol">Sort Descending</span> button (<img alt="" src="Img/sort_descend.png">) on the toolbar to sort the categories from most to least.</p>
+                </li>
+                <li value="5">
+                    <p>Click the <span class="uicontrol">Show Mark Labels</span> button (<img alt="" src="Img/marklabels.png">) on the toolbar to display measure values in the view.</p>
+                    <p>Your view now looks like this:</p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations10.png">
+                    </p>
+                    <p>Note the percentages for the first few items: 14.37%, 14.30%, etc.</p>
+                </li>
+                <li value="6">
+                    <p>Right-click  <span class="uicontrol">Sub-Category</span> on <span class="uicontrol">Rows</span> and choose <span class="uicontrol">Show Filter</span>.</p>
+                </li>
+                <li value="7">
+                    <p>Clear the check mark for <span class="uicontrol">Chairs</span> in the  filter.</p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations11.png">
+                    </p>
+                    <p>In the view, the percentages are now different—the highest percentage is now over 16%. In some cases, this may be just the result that you want (that is, for percentages to be recalculated as you work with the quick filter). But in other cases you may want the percentages to hold steady even as you filter items in or out. That’s what we want in this case. </p>
+                    <p>In the order of operations, a dimension filter is applied before a table calculation:</p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations6.png">
+                    </p>
+                    <p>To have Tableau calculate the percentages before it acts on the quick filter, you create a FIXED level of detail expression, and then use that instead of the table calculation. </p>
+                    <p>FIXED level of detail expressions compute a value using the specified dimensions, without reference to the dimensions in the view. In this case you’ll use it to establish percentages for the various sub-categories—percentages that won’t be affected by your general dimension filter. Why? Because FIXED level of detail expressions are computed before dimension filters are applied. </p>
+                    <p>For details, see <a class="MCXref xref" href="calculations_calculatedfields_lod.htm" xrefformat="{paratext}">Create Level of Detail Expressions in Tableau</a>.</p>
+                </li>
+                <li value="8">
+                    <p>The FIXED level of detail expression must divide the sum of <span class="uicontrol">Sales</span> (for a particular measure value) by the total sum of <span class="uicontrol">Sales</span> for the view. Because the numerator is aggregated, the denominator must be as well, so the expression you write is:</p>
+                    <p><code>SUM([Sales])/SUM({FIXED : SUM([Sales])})</code>
+                    </p>
+                </li>
+                <li value="9">
+                    <p>Save that expression as <span class="uicontrol">FixedSumOfSales</span> and then drag it from the <span class="uicontrol">Data pane</span> to <span class="uicontrol">Columns</span>, dropping it to the right of the existing <span class="uicontrol">SUM(Sales)</span> field that uses the table calculation. (Keep them both in the view for comparison.) Here is what your view now looks like:</p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations12.png">
+                    </p>
+                    <p>The percentage numbers in the chart on the right are now consistent, regardless of which fields you select or don’t select with the quick filter. All that remains is to format the values for <span class="uicontrol">FixedSumOfSales</span> so that they  show as percentages.</p>
+                </li>
+                <li value="10">
+                    <p>Right-click <span class="uicontrol">FixedSumOfSales</span> on <span class="uicontrol">Columns</span>  and choose <span class="uicontrol">Format</span>. In the <span class="uicontrol">Format</span> pane, choose <span class="uicontrol">Numbers</span> and then <span class="uicontrol">Percentage</span>:</p>
+                    <p>
+                        <img alt="" src="Img/OrderofOperations8.png">
+                    </p>
+                    <p>This gives you the final view:</p>
+                    <p>
+                        <img alt="" src="Img/OrderOfOperations9.png">
+                    </p>
+                    <p>As you select or clear items in the <span class="uicontrol">Sub-Category</span> quick filter, the percentages in the bar chart on the left change, but the percentages in the bar chart on the right do not.</p>
+                </li>
+            </ol>
+        </div><div class="article__footer--back-to-top text--centered print-hidden"><a href="#" class="text--caps"><span class="icon--med icon--arrow-up"></span> Back to top</a></div></article><nav class="nav-side nav-side--right"><menu-heading-links-scrollable-help menu-title="In this article" :disabled="false" :headings="pageHeadings"></menu-heading-links-scrollable-help></nav></div></div><footer class="container--full-width"><div class="container--centered"><div class="footer__links text--caps"><ul><li><a href="https://www.tableau.com/en-us/legal" class="">Legal</a></li><li><a href="https://www.tableau.com/en-us/privacy" class="">Privacy</a></li></ul></div><div class="footer__copyright text--caps">© 2003-2019 Tableau Software. All rights reserved</div></div></footer></div><script type="text/javascript">var TabHelp = TabHelp || {}; TabHelp.PageData = { name: "order_of_operations.htm" };</script> <script type="text/javascript" src="./Resources/toc.js?9d5de511173027df2a07525b611340f9"></script><script type="text/javascript" src="./Resources/feedback.js?9d5de511173027df2a07525b611340f9"></script> <!-- Built on: 2019-05-01 20:59:09.491112 --><script type="text/javascript" src="./Resources/vendor.js?2869d18f52bcc0ba3d47"></script><script type="text/javascript" src="./Resources/app.js?2869d18f52bcc0ba3d47"></script></body></html>

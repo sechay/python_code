@@ -1,0 +1,129 @@
+# Metadata for Gross Domestic Product at Current Market Prices, By Industry (SSIC 2015), Annual
+---
+Identifier: 'd6d0fe8c-f1a5-401c-bfe5-6cc0993ca41a'
+Name: 'gross-domestic-product-at-current-market-prices-annual'
+Title: 'Gross Domestic Product at Current Market Prices, By Industry (SSIC 2015),
+  Annual'
+Description: 'The aggregate value of goods and services produced in the economic territory
+  of Singapore. Estimates are compiled based on the best available data at the time
+  of release. They may be subsequently revised when new data becomes available.'
+Topics:
+  - 'Economy'
+Keywords:
+  - 'GDP'
+  - 'economy'
+  - 'gross domestic product'
+Publisher:
+  Name: 'Ministry of Trade and Industry - Department of Statistics'
+  Admin 1:
+    Name: 'SingStat Info'
+    Department: 'Statistics Information Services'
+    Email: 'info@singstat.gov.sg'
+Sources:
+  - 'Ministry of Trade and Industry - Department of Statistics'
+Source Url: 'http://www.tablebuilder.singstat.gov.sg/publicfacing/createDataTable.action?refId=12360&exportType=csv'
+License: 'https://data.gov.sg/open-data-licence'
+Frequency: 'Annual'
+Coverage: '1960-01-01 to 2017-12-31'
+Last Updated: '2018-10-18T20:36:04.568057'
+Resources:
+  -
+    Identifier: '6b910a4d-ffc1-43ef-b26f-5b982f778aff'
+    Title: 'Gross Domestic Product At Current Market Prices, Annual'
+    Url: 'https://storage.data.gov.sg/gross-domestic-product-at-current-market-prices-annual/resources/gross-domestic-product-at-current-market-prices-annual-2018-10-18T20-36-03Z.csv'
+    Format: 'CSV'
+    Coverage: '1960-01-01 to 2017-12-31'
+    Description: 'The aggregate value of goods and services produced in the economic
+      territory of Singapore. Estimates are compiled based on the best available data
+      at the time of release. They may be subsequently revised when new data becomes
+      available.'
+    Last Updated: '2018-10-18T20:36:03.813150'
+    Schema:
+      -
+        Name: 'year'
+        Title: 'Year'
+        Type: 'datetime'
+        Sub Type: 'year'
+        Format: 'YYYY'
+      -
+        Name: 'level_1'
+        Title: 'Main'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'value'
+        Title: 'Value'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'S$ Million'
+  -
+    Identifier: 'e63cbf44-107b-47c1-baad-ad0f841c09b8'
+    Title: 'Gross Domestic Product At Current Market Prices by Industry, Annual'
+    Url: 'https://storage.data.gov.sg/gross-domestic-product-at-current-market-prices-annual/resources/gross-domestic-product-at-current-market-prices-by-industry-annual-2018-10-17T20-37-50Z.csv'
+    Format: 'CSV'
+    Coverage: '1960-01-01 to 2017-12-31'
+    Last Updated: '2018-10-17T20:37:50.802638'
+    Schema:
+      -
+        Name: 'year'
+        Title: 'Year'
+        Type: 'datetime'
+        Sub Type: 'year'
+        Format: 'YYYY'
+      -
+        Name: 'level_1'
+        Title: 'Main'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'level_2'
+        Title: 'Industry'
+        Type: 'text'
+        Sub Type: 'general'
+        Description: 'Industry Group'
+      -
+        Name: 'value'
+        Title: 'Value'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'S$ Million'
+  -
+    Identifier: '0eb10e65-76f9-4a74-8cca-dd394e210c8f'
+    Title: 'Gross Domestic Product At Current Market Prices by Detailed Industry,
+      Annual'
+    Url: 'https://storage.data.gov.sg/gross-domestic-product-at-current-market-prices-annual/resources/gross-domestic-product-at-current-market-prices-by-detailed-industry-annual-2018-10-17T20-38-28Z.csv'
+    Format: 'CSV'
+    Coverage: '1960-01-01 to 2017-12-31'
+    Description: 'Breakdown of GDP contributions by industries in the goods and services
+      sectors.'
+    Last Updated: '2018-10-17T20:38:28.677210'
+    Schema:
+      -
+        Name: 'year'
+        Title: 'Year'
+        Type: 'datetime'
+        Sub Type: 'year'
+        Format: 'YYYY'
+      -
+        Name: 'level_1'
+        Title: 'Main'
+        Type: 'text'
+        Sub Type: 'general'
+      -
+        Name: 'level_2'
+        Title: 'Industry'
+        Type: 'text'
+        Sub Type: 'general'
+        Description: 'Industry Group'
+      -
+        Name: 'level_3'
+        Title: 'Detailed Industry'
+        Type: 'text'
+        Sub Type: 'general'
+        Description: 'Industry'
+      -
+        Name: 'value'
+        Title: 'Value'
+        Type: 'numeric'
+        Sub Type: 'general'
+        Unit Of Measure: 'S$ Million'
